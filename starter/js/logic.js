@@ -17,6 +17,7 @@ $('#search-button').on("click", function (event) {
                     return response.json();
                 }).then(function (data) {
                     console.log('weather data', data);
+                    $('#today').text(JSON.stringify(data))
                 });
         });
 
