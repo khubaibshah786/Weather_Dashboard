@@ -1,3 +1,21 @@
 .weather-header{
     background: linear-gradient(#e66465, #9198e5);
 }
+
+.forecast-container {
+    display: flex;
+    flex-wrap: nowrap; /* Prevent wrapping */
+    overflow-x: auto; /* Allow horizontal scrolling */
+}
+
+.card {
+    width: 200px; /* Adjust card width as needed */
+    margin-right: 10px; /* Adjust margin between cards */
+    border: 1px solid #ccc; /* Add border to cards */
+    padding: 10px;
+    background-color: #9198e5!important;
+}
+.card img {
+    max-width: 50px; /* Set maximum width for the icon */
+    height: auto; /* Maintain aspect ratio */
+}
