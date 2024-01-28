@@ -72,7 +72,6 @@ function fiveDayForecast(lat, lon, apiKey) {
                 var forecastIconUrl = 'https://openweathermap.org/img/wn/' + forecastIconCode + '.png';
 
                 var forecastCard = $('<div>').addClass('card');
-                forecastCard.addClass('col-lg-3 col-sm-12 pb-3'); // Bootstrap column class for medium screens
                 forecastCard.css('border', '1px solid');
 
                 var forecastContent = '<h3>' + forecastDate + '</h3>';
@@ -88,8 +87,6 @@ function fiveDayForecast(lat, lon, apiKey) {
             $('#forecast').append(forecastContainer);
         });
 }
-
-
 
 
 
