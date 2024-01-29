@@ -2,18 +2,33 @@ $(document).ready(function () {
     // Load search history buttons from localStorage when the page loads
     var searchWords = JSON.parse(localStorage.getItem('searchWords')) || [];
     searchWords.forEach(function (searchWord) {
-        var searchHistoryButton = $("<button>");
-        searchHistoryButton.addClass("btn btn-primary mb-2");
-        searchHistoryButton.text(searchWord);
+        var historyEntry = $('<div>').addClass('input-group mb-2');
+
+        var searchHistoryButton = $("<button>").addClass("btn btn-primary form-control").text(searchWord);
         searchHistoryButton.on('click', function () {
             // event.preventDefault();
             getWeatherData(searchWord);
-        })
-        $('#history').append(searchHistoryButton);
+        });
+
+        var deleteButton = $('<button>').addClass('btn btn-danger').text('Delete');
+        deleteButton.on('click', function () {
+            // Remove the searchWord from localStorage
+            searchWords = searchWords.filter(function (word) {
+                return word !== searchWord;
+            });
+            localStorage.setItem('searchWords', JSON.stringify(searchWords));
+
+            // Remove the history entry from the DOM
+            historyEntry.remove();
+        });
+
+        historyEntry.append(searchHistoryButton, deleteButton);
+        $('#history').append(historyEntry);
     });
 
     getCurrentWeather();
 });
+
 function getCurrentWeather() {
     $('#search-button').on("click", function (event) {
         event.preventDefault();
@@ -31,20 +46,34 @@ function getCurrentWeather() {
             localStorage.setItem('searchWords', JSON.stringify(searchWords));
 
             // Create and append the button for the new search word
-            var searchHistoryButton = $("<button>");
-            searchHistoryButton.addClass("btn btn-primary mb-2");
-            searchHistoryButton.text(searchWord);
+            var historyEntry = $('<div>').addClass('input-group mb-2');
+
+            var searchHistoryButton = $("<button>").addClass("btn btn-primary form-control").text(searchWord);
             searchHistoryButton.on('click', function () {
-                event.preventDefault();
                 getWeatherData(searchWord);
-            })
-            $('#history').append(searchHistoryButton);
+            });
+
+            var deleteButton = $('<button>').addClass('btn btn-danger').text('Delete');
+            deleteButton.on('click', function () {
+                // Remove the searchWord from localStorage
+                searchWords = searchWords.filter(function (word) {
+                    return word !== searchWord;
+                });
+                localStorage.setItem('searchWords', JSON.stringify(searchWords));
+
+                // Remove the history entry from the DOM
+                historyEntry.remove();
+            });
+
+            historyEntry.append(searchHistoryButton, deleteButton);
+            $('#history').append(historyEntry);
         }
 
         // Call the weather APIs with the searchWord
         getWeatherData(searchWord);
     });
 }
+
 
 function getWeatherData(searchWord) {
     var apiKey = '7aef1906e93e8116cc215bc5377288b3';
