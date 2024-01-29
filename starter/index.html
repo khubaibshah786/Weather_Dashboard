@@ -24,16 +24,23 @@
         </h2>
         <form id="search-form" class="form">
           <div class="form-inline form-group">
-            <div class="input-group">
-              <input class="form-input weather-search" type="text" id="search-input" placeholder="London"
+            <div class="input-group mb-3">
+              <input type="text" class="form-control form-input weather-search" placeholder="City Name" aria-describedby="basic-addon2" id="search-input">
+              <button type="submit" class="btn btn-primary search-button" id="search-button" aria-label="submit search">
+                Search
+              </button>
+            </div>
+            <hr class="hr weather-hr" />
+            <!-- <div class="input-group">
+              <input class="form-input weather-search form-control" type="text" id="search-input" placeholder="London"
                 aria-labelledby="form-heading" aria-controls="today forecast" />
               <div class="input-group-append">
-                <button type="submit" class="btn search-button" id="search-button" aria-label="submit search">
+                <button type="submit" class="btn btn-primary search-button" id="basic-addon search-button" aria-label="submit search">
                   Search
                 </button>
                 <hr class="hr weather-hr" />
               </div>
-            </div>
+            </div> -->
           </div>
         </form>
         <div class="list-group" id="history"></div>

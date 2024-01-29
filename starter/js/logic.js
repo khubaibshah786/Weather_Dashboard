@@ -1,8 +1,22 @@
 function getCurrentWeather() {
     $('#search-button').on("click", function (event) {
-        var searchWord = $('#search-input').val().trim();
-        localStorage.setItem('searchWord', searchWord);
         event.preventDefault();
+        var searchWord = $('#search-input').val().trim();
+        
+        // Retrieve existing search words from localStorage
+        var searchWords = JSON.parse(localStorage.getItem('searchWords')) || [];
+
+        // Add the new search word to the array
+        searchWords.push(searchWord);
+
+        // Limit the array to 5 elements if it exceeds that limit
+        // if (searchWords.length > 5) {
+        //     searchWords = searchWords.slice(searchWords.length - 5);
+        // }
+
+        // Store the updated array back to localStorage
+        localStorage.setItem('searchWords', JSON.stringify(searchWords));
+
         var apiKey = '7aef1906e93e8116cc215bc5377288b3';
         var getCoordinates = 'https://api.openweathermap.org/geo/1.0/direct?q=' + searchWord + '&limit=5&appid=' + apiKey+ '&units=metric';
 
@@ -20,9 +34,7 @@ function getCurrentWeather() {
                         return response.json();
                     }).then(function (weatherData) {
                         var locationDiv = $("<div>");
-                        // Clear locationDiv before appending new content
                         $('#today').empty();
-                        // Adding CSS border and padding to the locationDiv
                         locationDiv.css({
                             "border": "1px solid",
                             "padding": "10px"
@@ -37,16 +49,14 @@ function getCurrentWeather() {
                         htmlContent += '<p>Temperature: ' + tempFahrenheit +'°C'+ '</p>';
                         htmlContent += '<p>Wind Speed: ' + speed +'KPH'+ '</p>';
                         htmlContent += '<p>Humidity: ' + humidity +'%'+ '</p>';
-                        // Setting HTML content of locationDiv
                         locationDiv.html(htmlContent);
-                        // Append locationDiv to the today section
                         $('#today').append(locationDiv);
-                        // Call fiveDayForecast function with coordinates and API key
                         fiveDayForecast(lat, lon, apiKey);
                     });
             });
     });
 }
+
 function fiveDayForecast(lat, lon, apiKey) {
     var forecastApiCall = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + lat + '&lon=' + lon + '&appid=' + apiKey+'&cnt=5&units=metric';
 
@@ -54,9 +64,9 @@ function fiveDayForecast(lat, lon, apiKey) {
         .then(function (response) {
             return response.json();
         }).then(function (forecastData) {
+            $('#forecast').empty();
             console.log('5 day weather forecast', forecastData);
             var forecastContainer = $('<div>').addClass('forecast-container');
-
             // Add the "5-day forecast" heading
             var forecastHeading = $('<h2>').text('5-day forecast');
             $('#forecast').append(forecastHeading);
