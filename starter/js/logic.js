@@ -3,12 +3,19 @@ function getCurrentWeather() {
         event.preventDefault();
         var searchWord = $('#search-input').val().trim();
         
-        // Retrieve existing search words from localStorage
+       // Retrieve existing search words from localStorage
         var searchWords = JSON.parse(localStorage.getItem('searchWords')) || [];
+
 
         // Add the new search word to the array
         searchWords.push(searchWord);
-
+        for (let index = 0; index < searchWords.length; index++) {
+            const searchHistory = searchWords[index];
+            var searchHistoryButton = $("<button>"); // Create new button element inside loop
+            searchHistoryButton.addClass("btn btn-primary mb-2");
+            searchHistoryButton.text(searchHistory);
+            $('#history').append(searchHistoryButton);
+        }
         // Limit the array to 5 elements if it exceeds that limit
         // if (searchWords.length > 5) {
         //     searchWords = searchWords.slice(searchWords.length - 5);
