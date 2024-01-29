@@ -79,7 +79,7 @@ The following animation demonstrates the application functionality:
 
 ## Repository Setup Instructions
 ### 1. Clone the Repository:
-- git clone https://github.com/khubaibshah786/Weather_Dashboardr
+- git clone https://github.com/khubaibshah786/Weather_Dashboard
 
 ### 5. Deploy to GitHub Pages:
 After completing my Weather Dashboard project, I deployed it to GitHub Pages for public access.
