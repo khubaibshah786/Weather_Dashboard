@@ -34,6 +34,12 @@ function getCurrentWeather() {
         event.preventDefault();
         var searchWord = $('#search-input').val().trim();
 
+        // Check if the search input is empty
+        if (!searchWord) {
+            alert("Please enter a city name.");
+            return; // Exit the function if the search input is empty
+        }
+
         // Retrieve existing search words from localStorage
         var searchWords = JSON.parse(localStorage.getItem('searchWords')) || [];
 
@@ -73,6 +79,7 @@ function getCurrentWeather() {
         getWeatherData(searchWord);
     });
 }
+
 
 
 function getWeatherData(searchWord) {
