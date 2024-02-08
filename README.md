@@ -17,7 +17,7 @@
 # Description 
 
 
-I've created a weather application that allows users to search for the current weather by searhing a city name and a 5-day forecast for any location. The main features include:
+We have created a weather application that allows users to search for the current weather by searhing a city name and a 5-day forecast for any location. The main features include:
 
 Search History: The application stores search history locally, allowing users to quickly access past search queries. The search history is displayed as buttons, making it easy for users to revisit previous searches.
 
@@ -82,7 +82,7 @@ The following animation demonstrates the application functionality:
 - git clone https://github.com/khubaibshah786/Weather_Dashboard
 
 ### 5. Deploy to GitHub Pages:
-After completing my Weather Dashboard project, I deployed it to GitHub Pages for public access.
+After completing my Currency Compass project, we deployed it to GitHub Pages for public access.
 
 ### Technologies Used
 - HTML
